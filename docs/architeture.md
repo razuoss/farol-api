@@ -1,12 +1,13 @@
 # API Farol da Fé — Arquitetura de Software
 
 ## 1. Visão Geral
-Este documento descreve a arquitetura da **API Farol da Fé**, projetada como uma **Ferramenta de Apoio a Estudos Bíblicos Guiados e Exegéticos**. O objetivo do sistema é fornecer análises de textos e temas bíblicos com contexto histórico e aplicação prática.
+Este documento descreve a arquitetura da **API Farol da Fé**. 
+Para verificar o objetivo, acessar o README e/ou demais documentos disponibilizados.
 
 O fluxo de dados da aplicação ocorre da seguinte forma:
-1. Recebimento da requisição enviada por uma aplicação cliente (API REST) ou por integradores (bot do Telegram).
+1. Recebimento da requisição enviada por uma aplicação cliente (API REST) ou por integradores.
 2. Sanitização e validação prévia dos dados de entrada.
-3. Processamento síncrono da solicitação junto ao provedor de IA Generativa (Google Gemini).
+3. Processamento síncrono da solicitação junto ao provedor de IA Generativa.
 4. Retorno da resposta estruturada ao cliente.
 5. Gravação assíncrona da interação em segundo plano para fins de auditoria e curadoria.
 
@@ -133,16 +134,16 @@ A comunicação com a API do Google Gemini (ADR-006) é realizada via chamadas *
 ```mermaid  
 graph TD
     U["👤 Usuário"]
-    TG["📱 Telegram Bot API"]
+    TG["📱 Chat Bot API"]
 
     subgraph "Farol da Fé (Container)"
-        API["🌐 API Spring Boot<br/>Java 21 + Virtual Threads"]
+        API["🌐 API Spring Boot"]
     end
 
-    IA["🤖 IA Generativa<br/>Google Gemini"]
-    SHEETS["📊 Google Sheets<br/>Auditoria MVP"]
+    IA["🤖 IA Generativa"]
+    SHEETS["📊 Curadoria"]
 
-    U -->|Telegram| TG
+    U --> TG
     TG -->|Webhook HTTP POST| API
     API -->|HTTP POST síncrono| IA
     API -.->|HTTP POST assíncrono| SHEETS
@@ -150,65 +151,7 @@ graph TD
 
 ---
 
-### 6.2 Diagrama de Componentes
-
-```mermaid
-graph TD
-    subgraph "Clientes / Integradores"
-        APP["Aplicação Cliente (REST Direct)"]
-        BOT["Telegram Bot API"]
-    end
-
-    subgraph "API Farol da Fé (Spring Boot / Java 21)"
-        subgraph "Camada de Entrada (Controllers)"
-            C_REST["ExegeseController (/v1/exegese)"]
-            C_TG["TelegramWebhookController (/v1/webhooks/telegram)"]
-            GUARD["Filtro de Segurança & Guardrail"]
-        end
-
-        subgraph "Camada de Domínio (Service)"
-            SVC["ExegeseService"]
-        end
-
-        subgraph "Portas de Saída (Ports)"
-            P_AI["GenAiPort (Interface)"]
-            P_AUDIT["AuditRepositoryPort (Interface)"]
-        end
-
-        subgraph "Adaptadores de Saída (Adapters)"
-            AI_ADAPTER["GeminiAiAdapter (ADR-006)"]
-            SHEETS_ADAPTER["GoogleSheetsAdapter (Assíncrono)"]
-        end
-    end
-
-    subgraph "Serviços Externos"
-        GEMINI["Google Gemini API"]
-        SHEETS["Google Sheets API"]
-    end
-
-    APP -->|1. POST /v1/exegese| C_REST
-    BOT -->|1. POST /v1/webhooks/telegram| C_TG
-
-    C_REST --> GUARD
-    C_TG --> GUARD
-
-    GUARD -->|2. Requisição Válida| SVC
-    SVC -->|3. Solicitação de Processamento| P_AI
-    P_AI -->|4. Implementação| AI_ADAPTER
-    AI_ADAPTER -->|5. HTTP POST Síncrono| GEMINI
-    GEMINI -- "6. Retorno JSON Schema" --> AI_ADAPTER
-    AI_ADAPTER -->|7. DTO Mapeado| SVC
-    SVC -->|8. DTO de Resposta| C_REST
-    C_REST -- "9. HTTP 200 OK" --> APP
-
-    SVC -. "10. Gravação Assíncrona (Fire-and-Forget)" .-> P_AUDIT
-    P_AUDIT -. "11. Implementação" .-> SHEETS_ADAPTER
-    SHEETS_ADAPTER -. "12. Registra Log" .-> SHEETS
-```
-
----
-
-### 6.3 Diagrama de Sequência 
+### 6.2 Diagrama de Sequência 
 ### Fluxo Principal e Tratamento de Falhas
 
 ```mermaid
@@ -218,8 +161,8 @@ sequenceDiagram
     participant API as Controller
     participant G as Guardrail Filter
     participant S as ExegeseService
-    participant IA as GenAiAdapter (Gemini)
-    participant AUD as GoogleSheetsAdapter (Auditoria)
+    participant IA as GenAiAdapter
+    participant AUD as GoogleSheetsAdapter
 
     U->>API: 1. POST /v1/exegese (Payload)
     activate API

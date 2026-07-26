@@ -20,4 +20,4 @@ Você tem o direito de:
 Para detalhes legais completos da licença, consulte:  
 https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt
 
-Uberlândia/MG, Brasil — 2026
+Uberlândia/MG, Brasil — Julho/2026
