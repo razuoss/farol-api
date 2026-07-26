@@ -6,7 +6,9 @@ Este projeto é uma API de apoio a estudos bíblicos exegéticos e devocionais c
 
 ## 📌 Propósito
 
-O **Farol da Fé** visa apoiar cristãos com conteúdo informativo de qualidade para entendimento e estudos dos textos bíblicos, auxiliando no cruzamento de dados históricos, culturais e textuais.
+Muitas vezes, a dificuldade na interpretação bíblica não se dá por falta de fé ou ausência da ação do Espírito Santo, mas sim por lacunas na nossa formação educacional em leitura e interpretação de textos. Essa dificuldade técnica pode acabar gerando analogias erradas e aplicações incorretas do texto sagrado.
+
+O **Farol da Fé** nasce exatamente para preencher essa lacuna. A ferramenta visa apoiar cristãos trazendo o contexto histórico, cultural, literário e gramatical adequado para quem deseja mergulhar nas Escrituras. Nosso objetivo é fornecer ferramentas de compreensão para que o texto seja lido com a profundidade que exige, assumindo a Bíblia como a Palavra de Deus revelada na história: **inerrante, totalmente coerente e suficiente** para que possamos conhecê-Lo.
 
 O conteúdo gerado por este software destina-se **exclusivamente** ao apoio em estudos e devocionais com viés protestante histórico. **Não deve ser utilizado, sob nenhuma hipótese, como substituto do estudo pessoal da Bíblia, da oração e da direção do Espírito Santo, nem como conselho pastoral, jurídico, médico, psicológico ou normativo oficial de igrejas/denominações.**
 
