@@ -1,5 +1,5 @@
-# FAROL DA FÉ 
-## Um assistente Exegético Cristão com IA
+# Farol da Fé
+## API para estudo bíblico exegético e devocional com IA
 
 O **Farol da Fé** é um assistente que visa apoiar cristãos com conteúdo informativo de qualidade para entendimento e estudos dos textos bíblicos, auxiliando no cruzamento de dados históricos, culturais e textuais.
 
@@ -7,7 +7,7 @@ A motivação deste projeto nasceu da convergência entre duas jornadas do autor
   
 ---
 
-## 📌 Propósito  
+## Propósito  
 
 O **Farol da Fé** é um assistente pensado para auxiliar cristãos no estudo aprofundado das Escrituras e aplicação devocional, na organização de ideias, correlações teológicas e contexto histórico, buscando estar mais próximo possível da fidelidade textual e melhorar interpretações superficiais ou distorcidas. Para isso, o sistema utiliza Inteligência Artificial Generativa com instruções criteriosas para uma maior assertividade teológica.
 
@@ -15,29 +15,51 @@ O conteúdo gerado por este software destina-se **exclusivamente** ao apoio em e
 
 ---
 
-## ⚠️ Aviso Legal e Isenção de Responsabilidade (Disclaimer)
+## Como obter o projeto
 
-1. **Uso de IA e Possibilidade de Erros:** As respostas são processadas através de modelos de Inteligência Artificial Generativa. Modelos de IA estão sujeitos a imprecisões, erros de interpretação ou criar conteúdos divergentes. O usuário deve sempre validar qualquer conteúdo recebido diretamente no texto bíblico e com lideranças pastorais idôneas.
+Você pode obter este repositório de duas formas principais:
+
+### 1. Clone direto
+
+Se você apenas quiser explorar o projeto:
+
+```bash
+git clone https://github.com/razuoss/farol-api.git
+cd farol-api
+```
+
+
+### 2. Fork (recomendado para contribuição)
+
+Se você quiser estudar, adaptar ou contribuir com o projeto:
+
+1. Acesse o repositório no GitHub.
+2. Clique em "Fork".
+3. Clone o seu fork localmente:
+
+```bash
+git clone https://github.com/<seu-usuario>/farol-api.git
+cd farol-api
+```
+
+---
+
+## Aviso Legal e Isenção de Responsabilidade
+
+1. **Uso de IA e Possibilidade de Erros:** As respostas são processadas através de modelos de Inteligência Artificial Generativa. Modelos de IA estão sujeitos a imprecisões, por melhores que sejam as instruçẽos, bem como erros de interpretação ou criação de conteúdos divergentes. Caso ao usuário sempre validar todo o conteúdo recebido diretamente no texto bíblico e com lideranças pastorais idôneas.
 2. **Caráter Auxiliar:** Este software é uma ferramenta assistente. Nenhuma resposta gerada pela API possui caráter doutrinário, normativo ou dogmático.
 3. **Isenção de Garantia ("AS IS"):** O software é fornecido "no estado em que se encontra" (*AS IS*), sem garantias de qualquer tipo, expressas ou implícitas. O autor não se responsabiliza por usos indevidos e quaisquer danos, perdas ou decisões tomadas com base nas informações geradas por este sistema.
 4. **Uso por Terceiros:** A replicação, execução ou hospedagem deste código por terceiros é de inteira responsabilidade de quem o fizer, devendo respeitar integralmente os termos da licença do projeto.
 
----
-
-## 📜 Licença
-
-Este projeto está licenciado sob a licença **Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)**. 
-
-Você pode compartilhar e adaptar o material para fins não comerciais, desde que atribua o crédito ao projeto original e distribua sob a mesma licença. Veja detalhes em [LICENCE.md](LICENCE.md) e [TERMS.md](TERMS.md).
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Java 21:** Linguagem de programação principal (Virtual Threads).
-* **Spring Boot 4:** Framework para construção da API REST.
-* **Maven:** Gerenciador de dependências e build.
-* **Docker:** Conteinerização da aplicação.
+- Java 21
+- Spring Boot
+- Maven
+- Docker
 
 ---
 
@@ -49,8 +71,10 @@ A aplicação adota estritamente a **Arquitetura Hexagonal** em um modelo de **m
 farol-da-fe-api/
  ├── docs/                           
  │    ├── adr/                       # Registros de Decisão Arquitetural 
- │    ├── prd/                       # Registros de especificação de Produto/Plataforma
- │    └── architeture.md             # Documento com detalhamento de arquitetura
+ │    ├── api/                       # Registros de Contrato de API           
+ │    ├── features/                  # Registros de Funcionalidades          
+ │    ├── product.md                 # Documento com detalhamento do Produto/Plataforma
+ │    └── architecture.md            # Documento com detalhamento de arquitetura
  ├── src/
  │    ├── main/
  │    │    ├── java/.../farol_api/
@@ -74,6 +98,18 @@ farol-da-fe-api/
  │    └── test/                      
  ├── AGENTS.md                       # Diretrizes arquiteturais para Agentes IA
  ├── skills.md                       # Alias de referência rápida para AGENTS.md
- ├── dockerfile                      # COnfigurações de provisionamento de container
- └── pom.xml                         # Configurações gerais do projeto
+ ├── CODE_OF_CONDUCT.md              # Descrição do Código de Conduta               
+ ├── CONTRIBUTING.md                 # Descrição do Guia de Contribuições
+ ├── Dockerfile                      # COnfigurações de provisionamento de container
+ ├── LICENSE.md                      # Descrição da Licença de uso e cópia
+ ├── pom.xml                         # Configurações gerais do projeto
+ └── TERMS.md                        # Descrição dos Termos de uso
 ```
+
+---
+
+## 📜 Licença
+
+Este projeto está licenciado sob a licença **Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)**.  
+
+Você pode compartilhar e adaptar o material para fins não comerciais, desde que atribua o crédito ao projeto original e distribua sob a mesma licença. Veja detalhes em [LICENCE.md](LICENCE.md) e [TERMS.md](TERMS.md).
