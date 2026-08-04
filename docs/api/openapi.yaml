@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: Farol da Fé API
+  description: Ferramenta de Apoio a Estudos Bíblicos Exegéticos e Devocionais.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Ambiente de Desenvolvimento Local
+
+paths:
+  /v1/exegese:
+    post:
+      summary: Processa uma pergunta ou tema teológico
+      description: Recebe uma pergunta ou um tema em texto e retorna uma resposta processada pelo motor.
+      operationId: processarPergunta
+      tags:
+        - Exegese
+      requestBody:
+        description: Payload contendo o contexto do usuário.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerguntaRequest'
+      responses:
+        '200':
+          description: Fluxo completo com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespostaResponse'
+        '400':
+          description: Requisição inválida (Validação de payload).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErroResponse'
+
+components:
+  schemas:
+    PerguntaRequest:
+      type: object
+      required:
+        - tema
+      properties:
+        pergunta:
+          type: string
+          minLength: 1
+          description: O texto do tema ou pergunta do usuário. Não pode ser nulo ou vazio.
+          example: "Quem foi o apóstolo Paulo?"
+          
+    RespostaResponse:
+      type: object
+      required:
+        - resposta
+      properties:
+        resposta:
+          type: string
+          description: A resposta gerada ou mockada pela IA.
+          example: "Esta é uma resposta simulada para ambiente de desenvolvimento."
+          
+    ErroResponse:
+      type: object
+      required:
+        - erro
+        - mensagem
+      properties:
+        erro:
+          type: string
+          example: "Bad Request"
+        mensagem:
+          type: string
+          example: "É necessário enviar alguma pergunta ou contexto."
