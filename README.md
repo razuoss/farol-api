@@ -5,10 +5,13 @@ O **Farol da Fé** é um assistente que visa apoiar cristãos com conteúdo info
 
 A motivação deste projeto nasceu da convergência entre duas jornadas do autor: sua especialização em engenharia de software moderna e sua jornada como estudante de teologia. Por isso, mesmo como um projeto experimental e autoral, a **Farol da Fé API** adota padrões de mercado de alta maturidade.
   
+A motivação deste projeto nasceu da convergência entre duas jornadas do autor: sua especialização em engenharia de software moderna e sua jornada como estudante de teologia. Por isso, mesmo como um projeto experimental e autoral, a **Farol da Fé API** adota padrões de mercado de alta maturidade.
+  
 ---
 
 ## Propósito  
 
+O **Farol da Fé** é um assistente pensado para auxiliar cristãos no estudo aprofundado das Escrituras e aplicação devocional, na organização de ideias, correlações teológicas e contexto histórico, buscando estar mais próximo possível da fidelidade textual e melhorar interpretações superficiais ou distorcidas. Para isso, o sistema utiliza Inteligência Artificial Generativa com instruções criteriosas para uma maior assertividade teológica.
 O **Farol da Fé** é um assistente pensado para auxiliar cristãos no estudo aprofundado das Escrituras e aplicação devocional, na organização de ideias, correlações teológicas e contexto histórico, buscando estar mais próximo possível da fidelidade textual e melhorar interpretações superficiais ou distorcidas. Para isso, o sistema utiliza Inteligência Artificial Generativa com instruções criteriosas para uma maior assertividade teológica.
 
 O conteúdo gerado por este software destina-se **exclusivamente** ao apoio em estudos e devocionais com viés protestante histórico. **Não deve ser utilizado, sob nenhuma hipótese, como substituto do estudo pessoal da Bíblia, da oração e da direção do Espírito Santo, nem como conselho pastoral, jurídico, médico, psicológico ou normativo oficial de igrejas/denominações.**
@@ -48,6 +51,7 @@ cd farol-api
 
 1. **Uso de IA e Possibilidade de Erros:** As respostas são processadas através de modelos de Inteligência Artificial Generativa. Modelos de IA estão sujeitos a imprecisões, por melhores que sejam as instruçẽos, bem como erros de interpretação ou criação de conteúdos divergentes. Caso ao usuário sempre validar todo o conteúdo recebido diretamente no texto bíblico e com lideranças pastorais idôneas.
 2. **Caráter Auxiliar:** Este software é uma ferramenta assistente. Nenhuma resposta gerada pela API possui caráter doutrinário, normativo ou dogmático.
+3. **Isenção de Garantia ("AS IS"):** O software é fornecido "no estado em que se encontra" (*AS IS*), sem garantias de qualquer tipo, expressas ou implícitas. O autor não se responsabiliza por usos indevidos e quaisquer danos, perdas ou decisões tomadas com base nas informações geradas por este sistema.
 3. **Isenção de Garantia ("AS IS"):** O software é fornecido "no estado em que se encontra" (*AS IS*), sem garantias de qualquer tipo, expressas ou implícitas. O autor não se responsabiliza por usos indevidos e quaisquer danos, perdas ou decisões tomadas com base nas informações geradas por este sistema.
 4. **Uso por Terceiros:** A replicação, execução ou hospedagem deste código por terceiros é de inteira responsabilidade de quem o fizer, devendo respeitar integralmente os termos da licença do projeto.
 
