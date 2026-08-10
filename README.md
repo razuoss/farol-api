@@ -5,51 +5,33 @@ O **Farol da Fé** é um assistente que visa apoiar cristãos com conteúdo info
 
 A motivação deste projeto nasceu da convergência entre duas jornadas do autor: sua especialização em engenharia de software moderna e sua jornada como estudante de teologia. Por isso, mesmo como um projeto experimental e autoral, a **Farol da Fé API** adota padrões de mercado de alta maturidade.
   
+A motivação deste projeto nasceu da convergência entre duas jornadas do autor: sua especialização em engenharia de software moderna e sua jornada como estudante de teologia. Por isso, mesmo como um projeto experimental e autoral, a **Farol da Fé API** adota padrões de mercado de alta maturidade.
+  
 ---
 
 ## Propósito  
 
+O **Farol da Fé** é um assistente pensado para auxiliar cristãos no estudo aprofundado das Escrituras e aplicação devocional, na organização de ideias, correlações teológicas e contexto histórico, buscando estar mais próximo possível da fidelidade textual e melhorar interpretações superficiais ou distorcidas. Para isso, o sistema utiliza Inteligência Artificial Generativa com instruções criteriosas para uma maior assertividade teológica.
 O **Farol da Fé** é um assistente pensado para auxiliar cristãos no estudo aprofundado das Escrituras e aplicação devocional, na organização de ideias, correlações teológicas e contexto histórico, buscando estar mais próximo possível da fidelidade textual e melhorar interpretações superficiais ou distorcidas. Para isso, o sistema utiliza Inteligência Artificial Generativa com instruções criteriosas para uma maior assertividade teológica.
 
 O conteúdo gerado por este software destina-se **exclusivamente** ao apoio em estudos e devocionais com viés protestante histórico. **Não deve ser utilizado, sob nenhuma hipótese, como substituto do estudo pessoal da Bíblia, da oração e da direção do Espírito Santo, nem como conselho pastoral, jurídico, médico, psicológico ou normativo oficial de igrejas/denominações.**
 
 ---
 
-## Como executar o projeto
+## ⚠️ Aviso Legal e Isenção de Responsabilidade (Disclaimer)
 
-Você pode executar o repositório localmente da seguinte maneira:
-
-### 1. Obter o Código
-
-Se você quiser explorar o projeto:
-
-```bash
-git clone https://github.com/razuoss/farol-api.git
-cd farol-api
-```
-
-### 2. Rodar a Aplicação
-
-Para rodar o projeto localmente com as ferramentas padrão:
-
-1. Instale as dependências com `mvn clean install`.
-2. Rode o servidor com `mvn spring-boot:run`.
-
-Para rodar com Podman ou Docker:
-
-```bash
-podman-compose up --build -d
-# ou
-docker-compose up --build -d
-```
-
-> **Nota sobre Contribuições:** Atualmente, o projeto está em fase inicial de desenvolvimento (MVP). Portanto, **não estamos aceitando contribuições externas de código**. Para mais detalhes, veja o [Guia de Contribuições](CONTRIBUTING.md).
+1. **Uso de IA e Possibilidade de Erros:** As respostas são processadas através de modelos de Inteligência Artificial Generativa. Modelos de IA estão sujeitos a imprecisões, erros de interpretação ou criar conteúdos divergentes. O usuário deve sempre validar qualquer conteúdo recebido diretamente no texto bíblico e com lideranças pastorais idôneas.
+2. **Caráter Auxiliar:** Este software é uma ferramenta assistente. Nenhuma resposta gerada pela API possui caráter doutrinário, normativo ou dogmático.
+3. **Isenção de Garantia ("AS IS"):** O software é fornecido "no estado em que se encontra" (*AS IS*), sem garantias de qualquer tipo, expressas ou implícitas. O autor não se responsabiliza por usos indevidos e quaisquer danos, perdas ou decisões tomadas com base nas informações geradas por este sistema.
+4. **Uso por Terceiros:** A replicação, execução ou hospedagem deste código por terceiros é de inteira responsabilidade de quem o fizer, devendo respeitar integralmente os termos da licença do projeto.
 
 ---
 
-## Aviso Legal e Isenção de Responsabilidade
+## 📜 Licença
 
-Este software é fornecido no estado em que se encontra ("AS IS"), sendo uma ferramenta puramente auxiliar baseada em IA. Para detalhes completos sobre garantias, limitações de uso e isenção de responsabilidades, consulte nossos [Termos de Uso oficiais](TERMS.md).
+Este projeto está licenciado sob a licença **Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)**. 
+
+Você pode compartilhar e adaptar o material para fins não comerciais, desde que atribua o crédito ao projeto original e distribua sob a mesma licença. Veja detalhes em [LICENCE.md](LICENCE.md) e [TERMS.md](TERMS.md).
 
 ---
 
@@ -62,23 +44,39 @@ Este software é fornecido no estado em que se encontra ("AS IS"), sendo uma fer
 
 ---
 
-## 📂 Arquitetura e Comunidade
+## 📂 Estrutura do Projeto
 
-Para entender as decisões de design, a estrutura de portas e adaptadores, e demais documentações técnicas, consulte:
+A aplicação adota estritamente a **Arquitetura Hexagonal** em um modelo de **microserviço único**:
 
-- 🏛️ **[Arquitetura do Projeto](docs/architecture.md)**
-- 📖 **[Regras de Produto e Negócio](docs/product.md)**
-- 🤖 **[Diretrizes para IA (AGENTS.md)](AGENTS.md)**
-
-Para interagir com o projeto e a comunidade, leia:
-
-- 🤝 **[Guia de Contribuições](CONTRIBUTING.md)**
-- ⚖️ **[Código de Conduta](CODE_OF_CONDUCT.md)**
-
----
-
-## 📜 Licença
-
-Este projeto está licenciado sob a licença **Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)**.  
-
-Você pode compartilhar e adaptar o material para fins não comerciais, desde que atribua o crédito ao projeto original e distribua sob a mesma licença. Veja detalhes em [LICENSE.md](LICENSE.md) e [TERMS.md](TERMS.md).
+```
+farol-da-fe-api/
+ ├── docs/                           
+ │    ├── adr/                       # Registros de Decisão Arquitetural 
+ │    ├── prd/                       # Registros de especificação de Produto/Plataforma
+ │    └── architeture.md             # Documento com detalhamento de arquitetura
+ ├── src/
+ │    ├── main/
+ │    │    ├── java/.../farol_api/
+ │    │    │    ├── domain/          
+ │    │    │    │    ├── model/      # Entidades de domínio puras, Value Objects e exceções
+ │    │    │    │    ├── port/       # Contratos de entrada e saída (Inbound/Outbound Ports)
+ │    │    │    │    │    ├── in/    # Use Cases 
+ │    │    │    │    │    └── out/   # Interfaces de saída 
+ │    │    │    │    └── service/    # Implementações puras das regras de negócio
+ │    │    │    └── infra/  
+ │    │    │         ├── adapter/
+ │    │    │         │    ├── in/web/    # Controllers REST, Webhook do Telegram e DTOs (records)
+ │    │    │         │    └── out/
+ │    │    │         │         ├── gemini/ # GeminiAiAdapter implementando GenAiPort
+ │    │    │         │         └── audit/  # GoogleSheetsAdapter implementando AuditRepositoryPort
+ │    │    │         ├── config/         # Configurações Spring, Virtual Threads, CORS, Beans
+ │    │    │         └── guardrail/      # Filtros anti-injection, sanitização e limites (max 1000 chars)
+ │    │    └── resources/
+ │    │         ├── prompts/         # Prompts de sistema executáveis
+ │    │         └── application.yml  # Configurações de ambiente do Spring Boot
+ │    └── test/                      
+ ├── AGENTS.md                       # Diretrizes arquiteturais para Agentes IA
+ ├── skills.md                       # Alias de referência rápida para AGENTS.md
+ ├── dockerfile                      # COnfigurações de provisionamento de container
+ └── pom.xml                         # Configurações gerais do projeto
+```
