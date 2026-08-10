@@ -1,6 +1,6 @@
 # Estágio 1: Build da Aplicação com Maven
 # Usamos uma imagem oficial do Maven com JDK 21 para compilar nosso projeto.
-FROM maven:3.9-eclipse-temurin-21 AS builder
+FROM maven:3-eclipse-temurin-26 AS builder
 
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
