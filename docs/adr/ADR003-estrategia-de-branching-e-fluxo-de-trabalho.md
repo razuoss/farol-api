@@ -6,19 +6,19 @@
 
 ## Contexto
 
-Para organizar o desenvolvimento e o processo de deploy, fez-se necessária uma estratégia de branching no Git. O modelo GitFlow completo (com branches `feature`, `develop`, `release`, `hotfix` e `main`) foi considerado por ser um padrão robusto da indústria. No entanto, para a fase inicial de um projeto com um único desenvolvedor, a complexidade e a burocracia das branches `release` foi considerada um potencial obstáculo à agilidade.
+Para organizar o desenvolvimento e o processo de deploy, fez-se necessária uma estratégia de branching no Git. O modelo GitFlow completo (com branches `feat`, `develop`, `release`, `hotfix` e `main`) foi considerado por ser um padrão robusto da indústria. No entanto, para a fase inicial de um projeto com um único desenvolvedor, a complexidade e a burocracia das branches `release` precisa ser avaliada como um potencial obstáculo à agilidade.
 
 ## Decisão
 
-Adotaremos o padrão **"GitFlow Simplificado"** para a fase de MVP.
+Será adotado o padrão **"GitFlow Simplificado"** para a fase de MVP.
 
-* **`main`:** Branch principal, reflete o código em **Produção**. Será protegida para aceitar merges apenas da branch `develop` e via Pull Requests com aprovação.
+* **`main`:** Branch principal, reflete o código em **Produção**. Será protegida para aceitar merges apenas da branch `develop` (Homologado) e via Pull Requests com aprovação.
 
-* **`develop`:** Branch de integração, reflete o estado "pronto para homologação". Será a branch padrão do repositório e também será protegida para aceitar merges apenas de branches `feature/*` via Pull Requests.
+* **`develop`:** Branch de integração e Homologação, reflete o estado "pronto para homologação". Será a branch padrão do repositório e também será protegida para aceitar merges apenas de branches `feat/*` via Pull Requests.
 
-* **`feature/*`:** Branches para desenvolvimento de novas funcionalidades ou correções. São criadas a partir da `develop` e devem ser mescladas de volta para a `develop` via Pull Request.
+* **`feat/*`:** Branches para desenvolvimento de novas funcionalidades ou correções. São criadas a partir da `main` e devem ser mescladas de volta para a `develop` via Pull Request.
 
-O fluxo de trabalho padrão será: `feature/*` → `develop` (Homologação) → `main` (Produção).
+O fluxo de trabalho padrão será: `feat/*` → `develop` (Homologação) → `main` (Produção).
 
 A implementação de branches `release/*` será registrada como uma dívida técnica no backlog, a ser reavaliada quando o projeto atingir maior maturidade ou houver múltiplos contribuidores.
 

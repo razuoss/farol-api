@@ -7,14 +7,7 @@ atualmente, o projeto está em sua fase inicial de desenvolvimento (MVP), sendo 
 
 No futuro, após o lançamento do MVP, o projeto poderá ser aberto para colaboração.
 
----
 
-## 🚀 Como Rodar o Projeto Localmente
-
-1.  **Faça um Fork** do repositório para a sua própria conta no GitHub.
-2.  **Clone** o seu fork para a sua máquina local: `git clone https://github.com/SEU-USUARIO/farol-api.git`
-3.  **Instale as dependências** do projeto: `mvn clean install`
-4.  **Execute a aplicação** localmente para garantir que tudo está funcionando: `mvn spring-boot:run`
 
 ## 🌿 Fluxo de Trabalho (GitFlow Simplificado)
 

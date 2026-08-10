@@ -20,7 +20,7 @@ Criaremos **dois serviços separados** dentro do mesmo projeto para representar 
     * **Propósito:** Servir como um ambiente de integração contínua e testes manuais, com um endpoint fixo para validação.
 
 2.  **Serviço de Produção:**
-    * **Nome do Serviço:** `farol-prod`
+    * **Nome do Serviço:** `farol-api`
     * **Gatilho de Deploy:** O pipeline de CD será configurado para implantar neste serviço a cada `push` na branch `main`.
     * **Controle:** O pipeline de CI/CD no GitHub Actions utilizará um "Environment" de produção que exigirá **aprovação manual** antes do deploy, simulando um processo formal de change management.
 

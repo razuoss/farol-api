@@ -5,7 +5,7 @@
 
 ## Contexto
 
-Este documento define os requisitos não-funcionais (NFRs), as metas de serviço (SLOs) e a ferramenta de observabilidade para a **Fase 2** do projeto, quando a aplicação for migrada para o **Google Cloud Run**, conforme definido no `ADR-004`. O objetivo é garantir que a arquitetura no GCP opere de forma confiável, performática e dentro dos limites da camada gratuita ("Always Free").
+Este documento define os requisitos não-funcionais (NFRs), as metas de serviço (SLOs) e a ferramenta de observabilidade para as fases posteriores do projeto, quando a aplicação for migrada para o **Google Cloud Run**, conforme definido no `ADR-004`. O objetivo é garantir que a arquitetura no GCP opere de forma confiável, performática e dentro dos limites da camada gratuita ("Always Free").
 
 ## Decisão
 

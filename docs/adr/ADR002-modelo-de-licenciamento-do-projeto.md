@@ -6,7 +6,9 @@
 
 ## Contexto
 
-Sendo um recurso especifico de estudo para apoiar digitalmente a fé cristã, entendemos que não é destinado a todo público e não ser coerente ter fins comerciais. Dessa forma, o licenciamento do projeto precisa refletir seu propósito. As metas são: (a) proibir inequivocamente o uso comercial; (b) permitir que a comunidade use, estude e compartilhe o projeto; e (c) incentivar contribuições, garantindo que as melhorias permaneçam dentro do mesmo ecossistema não-comercial. 
+Sendo um recurso especifico originado a partir de uma proposta de estudo do autor sobre as tecnologias e processos de software envolvidos, ao mesmo tempo que implementa uma ferramenta de apoio que identificou útil para o campo cristão e teológico, entende-se que pode não ser destinado a todo público e coerente para fins comerciais. Dessa forma, o licenciamento do projeto precisa refletir seu propósito.  
+
+As metas são: (a) proibir inequivocamente o uso comercial; (b) permitir que a comunidade use, estude e compartilhe o projeto; e (c) incentivar contribuições, garantindo que as melhorias permaneçam dentro do mesmo ecossistema não-comercial. 
 
 ## Decisão
 

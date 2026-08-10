@@ -14,16 +14,16 @@ A opção considerada foi um módulo Java único, construido com frameworks como
 
 Adotaremos a seguinte stack de tecnologia para o MVP:
 
-1.  **Linguagem: Java 21 (LTS)**. A escolha pela versão 21, em detrimento da 17, se baseia no equilíbrio entre uma versão atualizada, estável e com suporte prolongado (LTS), que aborda recursos modernos como Virtual Threads - ideais para aplicações I/O-bound como a nossa.
+1.  **Linguagem: Java 21 (LTS)**. A escolha pela versão 21, em detrimento da 17 e até da 25, se baseia no equilíbrio entre uma versão atualizada, estável, fortemente testada e com suporte prolongado (LTS), que aborda recursos modernos como Virtual Threads - ideais para aplicações I/O-bound como a nossa.
 
-2.  **Framework: Spring Boot**. Embora Quarkus seja uma opção performática, Spring Boot foi escolhido por seu vasto ecossistema, imensa quantidade de documentação e recursos de aprendizado, e por se alinhar com o objetivo de aprofundar o conhecimento e habilidade técnica do desenvolvedor em uma tecnologia central no mercado.
+2.  **Framework: Spring Boot**. Embora Quarkus seja uma opção performática, Spring Boot foi escolhido por seu vasto ecossistema, imensa quantidade de documentação e recursos de aprendizado, e por se alinhar com o objetivo do autor de aprofundar seu conhecimento e habilidade técnica em uma tecnologia amplamente usada em mercado.
 
 3.  **Build Tool: Maven**. Escolhido por sua ubiquidade e integração simplificada com ferramentas de CI/CD como GitHub Actions e SonarCloud.
 
 ## Consequências
 
 ### Positivas
-* A stack é extremamente madura e confiável, com uma comunidade gigante para suporte.
+* A stack é extremamente madura e confiável, com uma comunidade muito grande para suporte.
 * Alinha-se com o objetivo de aprendizado e aprofundamento em tecnologias de alta demanda.
 * A escolha do Java 21 nos prepara para otimizações de performance futuras.
 
