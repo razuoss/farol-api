@@ -20,7 +20,7 @@ RUN mvn clean install -DskipTests
 
 # Estágio 2: Imagem Final de Execução
 # Usamos uma imagem JRE (Java Runtime Environment) mínima, para uma imagem final leve e segura.
-FROM eclipse-temurin:21-jre-jammy
+FROM eclipse-temurin:25-jre-jammy
 
 # Define o diretório de trabalho
 WORKDIR /app
