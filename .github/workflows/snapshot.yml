@@ -42,8 +42,19 @@ jobs:
       - name: Build e Testes com Maven
         run: mvn -B clean verify
 
+      - name: Run Trivy vulnerability scanner (Filesystem)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
       - name: Análise com SonarCloud
-        if: success() && github.event.inputs.run_sonar
+        if: success() && github.event.inputs.run_sonar == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

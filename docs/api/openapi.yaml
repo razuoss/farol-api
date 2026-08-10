@@ -1,36 +1,54 @@
 openapi: 3.0.3
 info:
   title: Farol da Fé API
-  description: Ferramenta de Apoio a Estudos Bíblicos Exegéticos e Devocionais.
+  description: API de apoio a estudos bíblicos devocionais e exegéticos assistidos por IA Generativa.
   version: 1.0.0
 servers:
   - url: http://localhost:8080
     description: Ambiente de Desenvolvimento Local
 
 paths:
-  /v1/exegese:
+  /v1/devocional:
     post:
-      summary: Processa uma pergunta ou tema teológico
-      description: Recebe uma pergunta ou um tema em texto e retorna uma resposta processada pelo motor.
-      operationId: processarPergunta
+      summary: Processa uma solicitação de devocional bíblico
+      description: Recebe um tema, versículo ou pergunta e retorna uma reflexão devocional estruturada.
+      operationId: processarDevocional
       tags:
-        - Exegese
+        - Devocional
       requestBody:
-        description: Payload contendo o contexto do usuário.
+        description: Payload contendo a solicitação do usuário.
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PerguntaRequest'
+              $ref: '#/components/schemas/DevocionalRequest'
       responses:
         '200':
-          description: Fluxo completo com sucesso.
+          description: Devocional processado com sucesso.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RespostaResponse'
+                $ref: '#/components/schemas/DevocionalResponse'
         '400':
-          description: Requisição inválida (Validação de payload).
+          description: Requisição inválida (validação de payload, prompt injection ou fora de escopo).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErroResponse'
+        '429':
+          description: Rate limit excedido (máximo 2 req/min por usuário).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErroResponse'
+        '503':
+          description: Serviço de IA temporariamente indisponível.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErroResponse'
+        '504':
+          description: Timeout na chamada à IA (> 30 segundos).
           content:
             application/json:
               schema:
@@ -38,27 +56,47 @@ paths:
 
 components:
   schemas:
-    PerguntaRequest:
+    DevocionalRequest:
       type: object
       required:
-        - tema
+        - solicitacao
       properties:
-        pergunta:
+        usuario_id:
+          type: string
+          description: Identificador do usuário (utilizado para rate limiting).
+          example: "123456"
+        solicitacao:
           type: string
           minLength: 1
-          description: O texto do tema ou pergunta do usuário. Não pode ser nulo ou vazio.
-          example: "Quem foi o apóstolo Paulo?"
-          
-    RespostaResponse:
+          maxLength: 1000
+          description: O tema, versículo ou pergunta do usuário. Máximo de 1.000 caracteres.
+          example: "Mensagem de esperança"
+
+    DevocionalResponse:
       type: object
       required:
-        - resposta
+        - referencia
+        - contexto_historico
+        - analise_texto
+        - aplicacao_pratica
       properties:
-        resposta:
+        referencia:
           type: string
-          description: A resposta gerada ou mockada pela IA.
-          example: "Esta é uma resposta simulada para ambiente de desenvolvimento."
-          
+          description: O versículo ou passagem bíblica de referência.
+          example: "Filipenses 4:13"
+        contexto_historico:
+          type: string
+          description: Contexto histórico-cultural da passagem.
+          example: "Escrito pelo apóstolo Paulo enquanto estava prisioneiro em Roma..."
+        analise_texto:
+          type: string
+          description: Análise do texto com referência aos idiomas originais quando pertinente.
+          example: "No grego original, o verbo indica capacitação para enfrentar qualquer situação..."
+        aplicacao_pratica:
+          type: string
+          description: Aplicação prática da passagem para o cotidiano do cristão.
+          example: "Aprender a ter contentamento tanto em momentos de necessidade quanto de fartura."
+
     ErroResponse:
       type: object
       required:

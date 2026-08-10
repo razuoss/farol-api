@@ -8,6 +8,7 @@ class FarolApplicationTests {
 
 	@Test
 	void contextLoads() {
+		FarolApplication.main(new String[]{});
 	}
 
 }
