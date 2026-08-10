@@ -5,7 +5,8 @@
 ---
 
 ## Quick Reference (Resumo Executivo para IA / Devs)
-- Consulte o arquivo **[AGENTS.md]** na raiz do repositório para ler as regras invioláveis de arquitetura (Hexagonal - Ports & Adapters), proibições estritas, convenções de nomenclatura e links para os ADRs.
+- **Regras Arquiteturais:** Consulte o arquivo **[AGENTS.md]** na raiz do repositório para ler as regras invioláveis de arquitetura (Hexagonal - Ports & Adapters), proibições estritas e convenções de nomenclatura.
+- **Fluxo de Desenvolvimento:** Para criar novas funcionalidades, utilize a skill local instalada em **`.agents/skills/sdd-feature/SKILL.md`**. Ela contém o workflow oficial de Spec-Driven Development (SDD) e TDD do projeto.
 - O arquivo principal `AGENTS.md` está em inglês para otimização de tokens e maior fidelidade no seguimento de instruções por modelos LLM, preservando o vocabulário teológico de domínio em português.
 
 ### Regras de Ouro (Fast Check)
