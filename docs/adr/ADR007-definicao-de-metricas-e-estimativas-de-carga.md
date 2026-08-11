@@ -43,6 +43,12 @@ Foram definidas as metas de serviço (SLOs), a estimativa de carga, as estratég
 * **Otimização de Concorrência:** A aplicação será configurada para utilizar **Virtual Threads (Java 21)** (ADR-001), e o serviço no Cloud Run terá seu máximo de solicitações simultâneas por instância ajustado para **10**.
 
 ### 3. Ferramenta de Coleta e Observabilidade
+
+**Fase 1 (MVP/Render) — Observabilidade Mínima:**
+* **Logs Estruturados:** A aplicação emitirá logs em formato JSON para facilitar a ingestão e busca na plataforma de logs do Render.
+* **Correlation-ID:** Todas as requisições receberão um `correlation-id` único na entrada, que atravessará o guardrail, serviço e o adapter do Gemini, permitindo rastrear o ciclo de vida completo de cada solicitação.
+
+**Fase 2 (GCP) — Métricas e Monitoramento Avançado:**
 * **Micrometer + Spring Boot Actuator:** A coleta técnica das métricas definidas nos SLOs (latência p95 da IA, taxa de erros HTTP e uso de CPU/RAM) será feita via **Micrometer**, expondo o endpoint `/actuator/prometheus`.
 * **Monitoramento na Nuvem:** No Cloud Run, as métricas serão coletadas nativamente pelo **Google Cloud Monitoring**, com alertas configurados por e-mail caso a latência p95 ou a taxa de erros ultrapassem as metas do SLO.
 

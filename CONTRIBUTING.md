@@ -44,7 +44,7 @@ A estrutura é: `<tipo>(<escopo>): <descrição>`
 
 ## 📐 Padrões de Código
 
-* **Formatação e Qualidade:** O projeto utiliza ferramentas de análise estática (Checkstyle, SpotBugs) para garantir a consistência e a qualidade do código.
+* **Formatação e Qualidade:** O projeto utiliza ferramentas de análise estática (SpotBugs) para garantir a consistência e a qualidade do código.
 * **Garantia:** Antes de enviar qualquer alteração, é mandatório que o build local passe sem erros executando `mvn clean verify`. O pipeline de CI irá validar esta condição.
 
 ---

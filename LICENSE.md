@@ -1,23 +1,25 @@
-# LICENÇA — CC BY-NC-SA 4.0
+Attribution-NonCommercial-ShareAlike 4.0 International
 
-O presente projeto, incluindo código fonte, scripts, prompts, documentações e saídas de exemplo, está licenciado sob uma Licença **Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)**.
+Creative Commons Corporation ("Creative Commons") is not a law firm and does not provide legal services or legal advice. Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons makes its licenses and related information available on an "as-is" basis. Creative Commons gives no warranties regarding its licenses, any material licensed under their terms and conditions, or any related information. Creative Commons disclaims all liability for damages resulting from their use to the fullest extent possible.
 
-## Direitos Concedidos
-Você tem o direito de:
-- **Compartilhar** — copiar e redistribuir o material em qualquer meio ou formato.
-- **Adaptar** — remixar, transformar e criar a partir do material, estritamente para fins não comerciais.
+For the full legal text of this license, please see:
+https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 
-## Condições Obrigatórias
-- **Atribuição:** Você deve dar o crédito apropriado ao projeto Farol da Fé, fornecer um link para esta licença e indicar se alterações foram feitas. Não pode sugerir que o licenciante endossa você ou o seu uso.
-- **Uso Não Comercial:** O material e suas derivações não podem ser utilizados para fins comerciais ou monetizados de nenhuma forma.
-- **CompartilhaIgual:** Se remixar, transformar ou criar a partir do material, deve distribuir suas contribuições sob a mesma licença (CC BY-NC-SA 4.0).
+=======================================================================
 
-## Isenção de Responsabilidade e Garantias (Disclaimer)
-- **"AS IS":** O material é fornecido "no estado em que se encontra", sem garantias de qualquer tipo, expressas ou implícitas.
-- **Conteúdo de IA:** O conteúdo processado depende de modelos de Inteligência Artificial Generativa e pode conter erros ou imprecisões. O autor não assume qualquer responsabilidade por decisões, interpretações ou usos feitos por terceiros.
-- **Não Normativo:** O conteúdo não constitui aconselhamento pastoral, dogmático, jurídico, médico ou psicológico.
+You are free to:
 
-Para detalhes legais completos da licença, consulte:  
-https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt
+Share — copy and redistribute the material in any medium or format
+Adapt — remix, transform, and build upon the material
 
-Uberlândia/MG, Brasil — Julho/2026
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+
+Under the following terms:
+
+Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+NonCommercial — You may not use the material for commercial purposes.
+
+ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.

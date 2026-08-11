@@ -93,14 +93,17 @@ Os usuários buscam:
 Para garantir a confiabilidade teológica e a proteção da experiência do usuário, o produto opera com três camadas de governança:
 
 1. **Proteção de Entrada (Input Guardrail):**
-   - **Tamanho Limite:** Entradas são limitadas a **1.000 caracteres**, garantindo espaço para perguntas contextuais e citações sem comprometer o escopo da resposta.
+   - **Tamanho Limite:** O tamanho máximo das entradas é definido pelo contrato formal (`openapi.yaml`). Isso garante espaço para perguntas contextuais e citações sem comprometer o escopo da resposta.
    - **Sanitização de Intenção:** Mensagens com tentativas de instrução maliciosa (*prompt injection* / *jailbreak*) são identificadas e bloqueadas.
    - **Filtro de Escopo:** Solicitações que não dizem respeito ao estudo bíblico, devocional ou reflexão cristã são recusadas de forma amigável antes do processamento pela IA.
 
 2. **Diretrizes Hermenêuticas (System Instruction):**
-   - Imposição do método gramático-histórico de interpretação.
-   - Tom solene, reverente, pastoral e respeitoso.
-   - Recusa graciosa e firme de polêmicas alheias à reflexão bíblica ou tentativas de debates ideológicos.
+   - Imposição do método gramático-histórico de interpretação: foco no contexto original do texto, público-alvo, formas de linguagem, cultura e intenção do autor inspirado.
+   - Fundamento na **Sola Scriptura**: a Bíblia (66 livros do cânon protestante, sem os apócrifos) como única regra infalível de fé e prática, tendo Jesus Cristo como a Palavra encarnada e centro das Escrituras.
+   - **Neutralidade denominacional:** O sistema não se alinha a uma tradição teológica específica (calvinista, arminiana, dispensacionalista, etc.). O objetivo é resgatar o que o autor original queria comunicar e traduzi-lo para a realidade atual do leitor.
+   - Rejeição ativa de correntes teologicamente divergentes do cristianismo histórico ortodoxo (ex: teologia liberal, teologia da prosperidade, sincretismo, seitas).
+   - Tom acolhedor e contemporâneo, porém reverente, pastoral e respeitoso. Acessível a pessoas simples e idosos.
+   - Recusa graciosa e firme de polêmicas alheias à reflexão bíblica ou tentativas de debates ideológicos. Temas sensíveis devem ser abordados com cautela, respeito e fundamentação textual.
 
 3. **Garantia de Saída Estruturada (Output Guardrail):**
    - O produto entrega respostas estritamente padronizadas em esquemas fortemente tipados.
@@ -116,7 +119,7 @@ O Farol da Fé adota a estratégia **API-First**:
 
 - **Núcleo Centralizado:** A API REST centraliza a inteligência, guardrails e as regras de produto.
 - **Ecossistema de Canais:** Aplicações de front-end (Web, Mobile) ou bots de mensagens atuam como integradores da API de produto, garantindo que qualquer evolução de inteligência beneficie todos os canais simultaneamente.
-- **Canal do MVP:** No MVP, o canal de interação é o **Telegram Bot** via Webhook (US-003).
+- **Canal do MVP:** No MVP, o canal de interação é o **Telegram Bot** (US-003).
 
 ---
 
@@ -131,7 +134,7 @@ O MVP é composto pelas seguintes User Stories, que juntas entregam o produto m�
 | **US-001** | Endpoint `POST /v1/devocional` — núcleo de processamento de reflexões bíblicas | — |
 | **US-002** | Integração com Google Gemini — motor de IA generativa com Structured Output | US-001 |
 | **US-003** | Integração com Telegram Bot — canal de interação via Webhook | US-001 |
-| **US-004** | Guardrails de entrada — sanitização, limites (1.000 chars) e filtro de escopo | US-001 |
+| **US-004** | Guardrails de entrada — sanitização, limites de tamanho e filtro de escopo | US-001 |
 
 > Para contratos e fluxos técnicos, consulte a [Arquitetura de Software](architecture.md).
 

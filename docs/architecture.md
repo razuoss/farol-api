@@ -63,6 +63,8 @@ io.github.razuoss.farol_da_fe
 3. **Virtual Threads para GenAI:** Comunicação com GenAI é síncrona (HTTP POST). Virtual Threads (Java 21) garantem que I/O bloqueante não esgote threads do SO ([ADR-001](adr/ADR001-escolha-da-stack-de-tecnologia.md)).
 4. **Imutabilidade de DTOs:** Sempre usar Java `record` para payloads de entrada, saída e estruturas de schema.
 5. **Auditoria Fire-and-Forget (Fase 2):** Quando implementada, a auditoria executa de forma assíncrona (`@Async`). Falhas na auditoria nunca afetam o retorno `HTTP 200 OK`.
+6. **Especificações de Funcionalidades (SDD):** A especificação de cada funcionalidade/feature deve residir no próprio pacote da feature em `domain/<feature>/SPEC.md`.
+7. **Gestão de Segredos (Fail-Fast):** Segredos como `GEMINI_API_KEY` devem ser injetados via variáveis de ambiente. A aplicação deve falhar no startup (fail-fast) se chaves obrigatórias não estiverem presentes. Sob nenhuma hipótese os valores dos segredos devem ser logados.
 
 ---
 
@@ -82,10 +84,13 @@ Endpoint REST para solicitação de reflexão bíblica devocional, conforme defi
 **Payload de Saída (HTTP 200 OK):**
 ```json
 {
-  "referencia": "Filipenses 4:13",
+  "titulo": "O Segredo do Contentamento",
+  "texto_chave": "Filipenses 4:13 (NVT)",
   "contexto_historico": "Escrito pelo apóstolo Paulo enquanto estava prisioneiro em Roma...",
   "analise_texto": "No grego original, o verbo indica capacitação para enfrentar qualquer situação...",
-  "aplicacao_pratica": "Aprender a ter contentamento tanto em momentos de necessidade quanto de fartura."
+  "aplicacao_pratica": "Aprender a ter contentamento tanto em momentos de necessidade quanto de fartura.",
+  "oracao": "Senhor, ensina-me a descansar em Tua suficiência. Que a paz de Cristo domine meu coração em todas as circunstâncias.",
+  "aviso_pastoral": "Nota: Este material é um apoio para meditação pessoal. Não substitui a leitura direta da Bíblia, a comunhão na igreja local e a orientação pastoral."
 }
 ```
 
@@ -138,7 +143,7 @@ A comunicação com a API do Google Gemini ([ADR-006](adr/ADR006-escolha-do-prov
 ## 5. Resiliência, Segurança e Tratamento de Exceções
 
 ### 5.1 Defesa e Sanitização (Guardrail)
-* **Limite de Tamanho:** A entrada do usuário é limitada a no máximo **1.000 caracteres**, permitindo perguntas mais detalhadas ou citação de trechos sem comprometer a segurança.
+* **Limite de Tamanho:** O limite máximo da entrada de caracteres é centralizado no contrato `openapi.yaml`.
 * **Proteção Anti-Prompt Injection:** Sanitização via expressões regulares para bloquear padrões conhecidos de *jailbreak* (ex: *"ignore as instruções anteriores"*).
 * **Filtro de Escopo:** Rejeição imediata de mensagens fora do escopo bíblico/teológico antes do acionamento da IA.
 
@@ -152,7 +157,7 @@ A comunicação com a API do Google Gemini ([ADR-006](adr/ADR006-escolha-do-prov
 | Entrada inválida, fora de escopo ou prompt injection | Rejeição imediata no guardrail | `400 Bad Request` |
 | Rate limit excedido | Bloqueio via Bucket4j | `429 Too Many Requests` |
 | API de IA indisponível (non-200 ou falha de rede) | Exceção capturada no `GeminiAiAdapter` | `503 Service Unavailable` |
-| Timeout na chamada à IA (> 30s) | Interrupção via Resilience4j ([ADR-011](adr/ADR011-padrao-circuit-breaker-e-resiliencia-com-resilience4j.md)) | `504 Gateway Timeout` |
+| Timeout na chamada à IA (> 30s) | Interrupção via HTTP Client timeout comum (MVP) / Resilience4j ([ADR-011](adr/ADR011-padrao-circuit-breaker-e-resiliencia-com-resilience4j.md)) (Fase 2 - GCP) | `504 Gateway Timeout` |
 | Schema mismatch / falha de parsing da resposta | Desserialização interceptada com fallback | `500 Internal Server Error` |
 | *(Fase 2)* Falha na auditoria assíncrona | Log de erro interno, sem afetar resposta | Não impacta |
 
@@ -194,7 +199,7 @@ sequenceDiagram
     U->>API: POST /v1/devocional (Payload)
     activate API
     
-    API->>G: Sanitização (Máx 1.000 chars & Anti-Injection)
+    API->>G: Sanitização (Guardrail de entrada & Anti-Injection)
     
     alt Mensagem Inválida ou Fora do Escopo
         G-->>API: Validação Falhou
