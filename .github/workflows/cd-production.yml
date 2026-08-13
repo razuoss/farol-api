@@ -14,7 +14,7 @@ jobs:
       url: https://farol-devocional-api.onrender.com
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Acionar Deploy Hook no Render
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL_PRD }}
