@@ -33,4 +33,26 @@ Before writing or modifying any code, you MUST consult the following specificati
 - **NEVER** send raw user input to GenAI without prior length truncation and guardrail validation.
 - **NEVER** expose internal stack traces or API keys in error responses.
 
+## 5. Senior Engineering Mindset & Anti-Patterns
+Before implementing any solution, evaluate:
+1. Is this the most idiomatic approach for Java 21 / Spring Boot 4.x?
+2. Does this follow RESTful conventions (proper HTTP verbs, status codes, resource naming)?
+3. Would a senior engineer approve this in code review?
+4. Is there a simpler, more maintainable alternative?
+When in doubt, prefer the approach that is most testable, most readable, and least surprising.
 
+### 5.1 Anti-Patterns (What NOT to do)
+| ❌ Anti-Pattern | ✅ Correct Approach | Justification |
+|:---|:---|:---|
+| `POST /v1/cancelar-item` | `DELETE /v1/itens/{id}` | Use proper RESTful HTTP verbs. |
+| `Map<String, Object>` for parsing | `record DevocionalResponse(...)` | Strong typing, compile-time safety. |
+| `@Autowired` on private field | Constructor injection | Immutability, testability. |
+| Generic `try/catch(Exception e)` | Catch specific domain exceptions | Granular error handling. |
+| Nested `if (obj != null)` | `Optional` or early return/fail-fast | Clean code, readability. |
+| Business logic in Controller | Delegate to Service via Port | Hexagonal: Controller is a thin adapter. |
+| `System.out.println` | SLF4J Logger | Professional observability. |
+| String concatenation for URLs | `UriComponentsBuilder` | Security, proper encoding. |
+| Hardcoded timeout `30000` | `@Value("${gemini.timeout-seconds}")` | Externalized configuration. |
+
+## 6. Commit, PR & Contribution Guidelines
+- For commit message formats, pull request standards, and co-authorship guidelines, **MUST READ**: `CONTRIBUTING.md` and `.github/PULL_REQUEST_TEMPLATE.md`.

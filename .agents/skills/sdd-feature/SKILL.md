@@ -19,6 +19,9 @@ Quando o usuário invocar esta skill, este fluxo deve ser seguido para implement
 3. **Test-Driven Development (TDD)**:
    - Escreva os testes unitários e de integração ANTES do código de produção.
    - Use JUnit 5, Mockito, AssertJ e WireMock (se houver integrações HTTP).
+   - **Cenários Mínimos Obrigatórios (Exija a cobertura antes de concluir):**
+     - **Testes Unitários:** Happy path (entrada válida), valores limite/máximo, entrada nula/vazia, caracteres especiais.
+     - **Testes de Integração:** 200 OK (valido), 400 (inválido / injection), 429 (rate limit), 503 (IA down), 504 (timeout IA), 500 (schema mismatch).
 
 4. **Implementação de Código**:
    - Crie as classes e interfaces respeitando a Arquitetura Hexagonal (Portas e Adaptadores).

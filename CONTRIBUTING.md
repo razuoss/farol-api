@@ -23,24 +23,33 @@ Quando as contribuições forem abertas, seguiremos um fluxo de trabalho simplif
 3.  **Desenvolva e Faça Commits:** Trabalhe na sua feature e faça commits seguindo o nosso padrão de mensagens.
 4.  **Abra um Pull Request (PR):** No GitHub, abra um Pull Request da sua `feature branch` para a branch `develop` do repositório principal para revisão.
 
-## ✍️ Padrão de Mensagens de Commit (Conventional Commits)
+## ✍️ Padrões de Commit e Pull Request
 
-Todas as mensagens de commit **devem** seguir o padrão **Conventional Commits** para manter um histórico limpo e legível.
+### Padrão de Commits
+Todas as mensagens de commit **devem** seguir o padrão adaptado abaixo para manter um histórico limpo e legível.
 
-A estrutura é: `<tipo>(<escopo>): <descrição>`
+A estrutura é: `(tipo) descrição curta em português brasileiro`
+
+* **Importante:** Sempre que um agente de IA (como o Antigravity) criar o commit, a assinatura de co-autoria deve ser adicionada:
+  `Co-authored-by: Antigravity AI <ai@antigravity.dev>`
 
 #### Guia Rápido de Tipos de Commit
 
-| Tipo         | Quando Usar                                                   | Exemplo                                                |
-| :----------- | :------------------------------------------------------------ | :----------------------------------------------------- |
-| **`feat`** | Adicionar uma nova funcionalidade.                            | `feat(api): add endpoint geração de devocinais em audio` |
-| **`fix`** | Corrigir um bug.                                              | `fix(service): lidar com temas nulos de forma elegante`           |
-| **`ci`** | Alterar os arquivos de workflow (`.github/workflows/`).        | `ci(actions): adicionar job para deploy em produção`     |
-| **`docs`** | Mudar o `README.md` ou adicionar um ADR.                      | `docs(adr): adicionar ADR para decisão de plataforma de hospedagem`      |
-| **`refac`**| Melhorar o código sem mudar o que ele faz.                    | `refac(service): extrair chamada Gemini para um adaptador separado`|
-| **`chore`** | Tarefas de manutenção (ajustar `pom.xml`, `.gitignore`).      | `chore(build): atualizar versão do Spring Boot no pom.xml`   |
-| **`style`** | Mudanças de formatação que não afetam o código.               | `style(controller): aplicar formatação de código`              |
-| **`test`** | Adicionar ou corrigir testes.                                 | `test(service): adicionar testes unitários para geração de devocionais`|
+| Tipo | Quando Usar | Exemplo |
+| :--- | :--- | :--- |
+| **`feat`** | Adicionar uma nova funcionalidade. | `(feat) implementar endpoint POST /v1/devocional` |
+| **`fix`** | Corrigir um bug. | `(fix) corrigir validação de entrada no guardrail` |
+| **`ci`** | Alterar os arquivos de workflow. | `(ci) adicionar job para deploy em produção` |
+| **`docs`** | Mudar documentação ou ADRs. | `(docs) atualizar especificação de arquitetura hexagonal` |
+| **`refactor`**| Melhorar o código sem mudar o que ele faz. | `(refactor) extrair chamada Gemini para um adaptador separado` |
+| **`chore`** | Tarefas de manutenção (pom.xml, etc). | `(chore) atualizar versão do Spring Boot` |
+| **`test`** | Adicionar ou corrigir testes. | `(test) adicionar testes unitários para geração de devocionais` |
+
+### Padrão de Pull Requests (PRs)
+- **Título do PR:** Deve ser uma frase clara e humana em português (ex: "Implementação do endpoint de devocional com integração Gemini"). Não use o prefixo `(feat)` no título do PR.
+- **Descrição do PR:** Siga o template padrão injetado pelo GitHub detalhando o contexto, as mudanças e como testar.
+
+> **Nota para Agentes de IA:** Leia o `.github/PULL_REQUEST_TEMPLATE.md` para entender como preencher a descrição do PR.
 
 ## 📐 Padrões de Código
 
