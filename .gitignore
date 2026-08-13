@@ -36,3 +36,6 @@ build/
 /.scannerwork/
 .sonar/
 .sonarlint/
+
+### IA ###
+.agents/

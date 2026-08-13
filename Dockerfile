@@ -11,8 +11,9 @@ COPY pom.xml .
 # Baixa as dependências do projeto
 RUN mvn dependency:go-offline
 
-# Copia o restante do código-fonte
+# Copia o restante do código-fonte e documentações
 COPY src ./src
+COPY docs ./docs
 
 # Compila o projeto e gera o arquivo .jar, pulando os testes que já rodaram no CI
 RUN mvn clean install -DskipTests

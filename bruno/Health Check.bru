@@ -1,0 +1,21 @@
+meta {
+  name: Health Check
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/actuator/health
+  body: none
+  auth: none
+}
+
+tests {
+  test("status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("status is UP", function() {
+    var jsonData = res.getBody();
+    expect(jsonData.status).to.equal("UP");
+  });
+}

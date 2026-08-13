@@ -1,15 +1,21 @@
 name: Workflow Snapshot
 
 on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'feat/**'
+      - 'bugfix/**'
+      - 'hotfix/**'
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Selecione a branch para build e teste'
-        required: true
+        description: 'Selecione a branch para build e teste (apenas dispatch manual)'
+        required: false
         type: string
         default: 'develop'
       run_sonar:
-        description: 'Executar análise do Sonar'
+        description: 'Executar análise do Sonar (apenas dispatch manual)'
         type: boolean
         default: false
 
@@ -21,7 +27,7 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.branch_name }}
+          ref: ${{ github.event.inputs.branch_name || github.ref }}
           # O fetch-depth: 0 é recomendado para o SonarCloud analisar o histórico completo da branch.
           fetch-depth: 0
 
@@ -53,8 +59,15 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
+      - name: Upload Jacoco Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
+
       - name: Análise com SonarCloud
-        if: success() && github.event.inputs.run_sonar == 'true'
+        if: success() && (github.event_name == 'push' || github.event.inputs.run_sonar == 'true')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
