@@ -12,13 +12,16 @@ Quando o usuário invocar esta skill, este fluxo deve ser seguido para implement
    - Gere um artefato de plano de implementação listando pacotes, classes, interfaces e testes que serão criados.
    - Aguarde a aprovação do usuário.
 
-2. **Especificação Local (Co-location)**:
-   - Crie o diretório do domínio da funcionalidade (ex: `src/main/java/io/github/.../domain/nome_feature/`).
-   - Crie um arquivo `SPEC.md` detalhando os Critérios de Aceite (formato Gherkin/BDD) baseados no `product.md`.
+2. **Especificação Local (Co-location e Estrutura Híbrida)**:
+   - Respeite a estrutura híbrida do domínio: elementos exclusivos vão para o pacote da feature (`domain/nome_feature/`), enquanto elementos reutilizáveis vão para `domain/shared/`.
+   - Crie um arquivo `SPEC.md` dentro do pacote da funcionalidade detalhando os Critérios de Aceite (formato Gherkin/BDD) baseados no `product.md`.
 
 3. **Test-Driven Development (TDD)**:
    - Escreva os testes unitários e de integração ANTES do código de produção.
    - Use JUnit 5, Mockito, AssertJ e WireMock (se houver integrações HTTP).
+   - **Cenários Mínimos Obrigatórios (Exija a cobertura antes de concluir):**
+     - **Testes Unitários:** Happy path (entrada válida), valores limite/máximo, entrada nula/vazia, caracteres especiais.
+     - **Testes de Integração:** 200 OK (valido), 400 (inválido / injection), 429 (rate limit), 503 (IA down), 504 (timeout IA), 500 (schema mismatch).
 
 4. **Implementação de Código**:
    - Crie as classes e interfaces respeitando a Arquitetura Hexagonal (Portas e Adaptadores).

@@ -15,6 +15,7 @@ paths:
       operationId: processarDevocional
       tags:
         - Devocional
+      x-user-story: US-001
       requestBody:
         description: Payload contendo a solicitação do usuário.
         required: true
@@ -53,6 +54,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErroResponse'
+        '500':
+          description: Erro interno ao processar a resposta da IA (schema mismatch ou falha de desserialização).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErroResponse'
+
+  /v1/webhooks/telegram:
+    post:
+      summary: Recebe atualizações do webhook do Telegram
+      operationId: processarWebhookTelegram
+      tags:
+        - Telegram
+      x-user-story: US-003
+      parameters:
+        - name: X-Telegram-Bot-Api-Secret-Token
+          in: header
+          description: Token secreto para validação da origem da requisição.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Payload enviado pelo Telegram.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TelegramUpdate'
+      responses:
+        '200':
+          description: Webhook processado com sucesso.
+        '401':
+          description: Token secreto inválido ou ausente.
 
 components:
   schemas:
@@ -75,27 +109,42 @@ components:
     DevocionalResponse:
       type: object
       required:
-        - referencia
+        - titulo
+        - texto_chave
         - contexto_historico
         - analise_texto
         - aplicacao_pratica
+        - oracao
+        - aviso_pastoral
       properties:
-        referencia:
+        titulo:
           type: string
-          description: O versículo ou passagem bíblica de referência.
-          example: "Filipenses 4:13"
+          description: Título curto e impactante alinhado ao tema.
+          example: "O Segredo do Contentamento"
+        texto_chave:
+          type: string
+          description: O versículo ou passagem bíblica de referência com a versão indicada (ex. ACF, NVT).
+          example: "Filipenses 4:13 (NVT)"
         contexto_historico:
           type: string
-          description: Contexto histórico-cultural da passagem.
+          description: Contexto e significado principal do texto original.
           example: "Escrito pelo apóstolo Paulo enquanto estava prisioneiro em Roma..."
         analise_texto:
           type: string
-          description: Análise do texto com referência aos idiomas originais quando pertinente.
-          example: "No grego original, o verbo indica capacitação para enfrentar qualquer situação..."
+          description: Correlação com outra passagem bíblica reforçando a unidade das Escrituras.
+          example: "Assim como Jesus ensinou sobre depender do Pai em Mateus 6..."
         aplicacao_pratica:
           type: string
           description: Aplicação prática da passagem para o cotidiano do cristão.
           example: "Aprender a ter contentamento tanto em momentos de necessidade quanto de fartura."
+        oracao:
+          type: string
+          description: Uma oração curta (2 frases) baseada na reflexão.
+          example: "Senhor, ensina-me a descansar em Tua suficiência. Que a paz de Cristo domine meu coração em todas as circunstâncias."
+        aviso_pastoral:
+          type: string
+          description: Aviso fixo adicionado pelo backend informando que o devocional não substitui a congregação.
+          example: "Nota: Este material é um apoio para meditação pessoal. Não substitui a leitura direta da Bíblia, a comunhão na igreja local e a orientação pastoral."
 
     ErroResponse:
       type: object
@@ -109,3 +158,30 @@ components:
         mensagem:
           type: string
           example: "É necessário enviar alguma pergunta ou contexto."
+
+    TelegramUpdate:
+      type: object
+      required:
+        - update_id
+      properties:
+        update_id:
+          type: integer
+        message:
+          type: object
+          properties:
+            message_id:
+              type: integer
+            from:
+              type: object
+              properties:
+                id:
+                  type: integer
+                first_name:
+                  type: string
+            chat:
+              type: object
+              properties:
+                id:
+                  type: integer
+            text:
+              type: string
