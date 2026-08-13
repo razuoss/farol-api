@@ -28,5 +28,18 @@ Quando o usuário invocar esta skill, este fluxo deve ser seguido para implement
    - Use `records` para DTOs.
    - Implemente os Guardrails se a feature envolver entrada do usuário.
 
-5. **Artefatos Auxiliares**:
-   - Gere a requisição para o Bruno API Client na pasta `collections/` na raiz do projeto.
+5. **Testes E2E Locais (Podman e Bruno)**:
+   - Compile a aplicação ignorando os testes unitários (`mvn clean package -DskipTests`).
+   - Construa a imagem Podman com a tag combinando o nome do app e o código da US, ex: `farol-api-us001` (`podman build -t <nome> .`).
+   - Crie a coleção de requisições mínimas e Health Check para o Bruno API Client na pasta `bruno/`.
+   - Suba o container Podman em background expondo as portas necessárias.
+   - Execute os testes automaticamente através do CLI do Bruno (`bru run`).
+
+6. **Validação e Fluxo CI/CD**:
+   - **PAUSE AQUI**: Aguarde o teste manual e aprovação (GO / NO-GO) por parte do humano. Não siga adiante sem o GO.
+   - Após receber o GO:
+     - Formate o commit no padrão `(tipo) descrição curta em pt-br` adicionando a tag `Co-authored-by: Antigravity AI <ai@antigravity.dev>`.
+     - Suba as alterações para a branch da feature (ex: `feat/us-001-core-api`).
+     - Monitore a esteira/workflow no GitHub (ex: Snapshot, Sonar).
+     - Se o workflow passar, abra o Pull Request (PR) com título claro e resumo legível das alterações.
+     - Finalize a tarefa parando o container (`podman rm -f`) e excluindo a imagem criada (`podman rmi`), mas mantenha a pasta e coleção do Bruno no repositório.
