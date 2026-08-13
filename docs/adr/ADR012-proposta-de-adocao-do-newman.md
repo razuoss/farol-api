@@ -1,6 +1,6 @@
 # ADR-012: Proposta de Adoção do Newman para Validação de APIs
 
-* **Status:** Proposto
+* **Status:** Rejeitado
 * **Data:** 2026-08-11
 
 ## Contexto

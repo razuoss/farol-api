@@ -36,16 +36,21 @@ A separação de responsabilidades é mantida através do padrão de Arquitetura
 * **Camada de IA:** A regra de negócio interage exclusivamente com a interface `GenAiPort`. A implementação utiliza o `GeminiAiAdapter` ([ADR-006](adr/ADR006-escolha-do-provedor-de-ia-generativa.md)). Essa abstração permite a substituição do provedor sem alterações na camada de domínio.
 * **Camada de Auditoria (Fase 2):** A gravação de interações será realizada através da interface `AuditRepositoryPort`. No MVP da auditoria, será utilizado o `GoogleSheetsAdapter`, com migração futura para MongoDB ([ADR-009](adr/ADR009-estrategia-de-migracao-da-persistencia-de-auditoria-para-mongodb.md)).
 
-### 2.3 Estrutura de Pacotes
+### 2.3 Estrutura de Pacotes (Híbrida)
+
+O pacote de domínio adota um modelo híbrido: elementos compartilhados ficam em `shared`, enquanto funcionalidades exclusivas têm seus próprios subpacotes (Package by Feature).
 
 ```
 io.github.razuoss.farol_da_fe
  ├── domain/                     # 🚫 NUNCA importar Spring ou frameworks aqui
- │    ├── model/                 # Entidades de domínio puras, Value Objects e exceções
- │    ├── port/
- │    │    ├── in/               # Interfaces de caso de uso (ex: DevocionalUseCase)
- │    │    └── out/              # Interfaces de saída (ex: GenAiPort, AuditRepositoryPort)
- │    └── service/               # Implementações puras das regras de negócio
+ │    ├── shared/                # Modelos e portas compartilhadas entre funcionalidades
+ │    │    ├── model/            # Value Objects compartilhados e exceções
+ │    │    └── port/out/         # Interfaces de saída (ex: GenAiPort, AuditRepositoryPort)
+ │    └── <feature>/             # Diretório isolado por funcionalidade (ex: devocional)
+ │         ├── model/            # Entidades exclusivas da feature
+ │         ├── port/in/          # Interfaces de caso de uso (ex: DevocionalUseCase)
+ │         ├── service/          # Regras de negócio da feature
+ │         └── SPEC.md           # Especificação comportamental (Critérios de Aceite)
  ├── infrastructure/
  │    ├── adapter/
  │    │    ├── in/web/           # Controllers REST, Webhook Telegram e DTOs (records)
@@ -87,7 +92,7 @@ Endpoint REST para solicitação de reflexão bíblica devocional, conforme defi
   "titulo": "O Segredo do Contentamento",
   "texto_chave": "Filipenses 4:13 (NVT)",
   "contexto_historico": "Escrito pelo apóstolo Paulo enquanto estava prisioneiro em Roma...",
-  "analise_texto": "No grego original, o verbo indica capacitação para enfrentar qualquer situação...",
+  "analise_texto": "Assim como Jesus ensinou sobre depender do Pai em Mateus 6, Paulo descreve...",
   "aplicacao_pratica": "Aprender a ter contentamento tanto em momentos de necessidade quanto de fartura.",
   "oracao": "Senhor, ensina-me a descansar em Tua suficiência. Que a paz de Cristo domine meu coração em todas as circunstâncias.",
   "aviso_pastoral": "Nota: Este material é um apoio para meditação pessoal. Não substitui a leitura direta da Bíblia, a comunhão na igreja local e a orientação pastoral."

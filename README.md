@@ -67,7 +67,7 @@ farol-da-fe-api/
  │    │    │         ├── adapter/
  │    │    │         │    ├── in/web/    # Controllers REST, Webhook do Telegram e DTOs (records)
  │    │    │         │    └── out/
- │    │    │         │         ├── gemini/ # GeminiAiAdapter implementando GenAiPort
+ │    │    │         │         ├── genai/  # GeminiAiAdapter implementando GenAiPort
  │    │    │         │         └── audit/  # GoogleSheetsAdapter implementando AuditRepositoryPort
  │    │    │         ├── config/         # Configurações Spring, Virtual Threads, CORS, Beans
  │    │    │         └── guardrail/      # Filtros anti-injection, sanitização e limites
