@@ -9,12 +9,13 @@ Quando o usuário invocar esta skill, este fluxo deve ser seguido para implement
 
 1. **Planejamento Técnico (`/plan`)**:
    - Analise os requisitos da funcionalidade.
+   - Siga rigorosamente `docs/spec-driven.md` movendo o status da Issue para "In Progress" e vinculando a nova branch.
    - Gere um artefato de plano de implementação listando pacotes, classes, interfaces e testes que serão criados.
    - Aguarde a aprovação do usuário.
 
 2. **Especificação Local (Co-location e Estrutura Híbrida)**:
    - Respeite a estrutura híbrida do domínio: elementos exclusivos vão para o pacote da feature (`domain/nome_feature/`), enquanto elementos reutilizáveis vão para `domain/shared/`.
-   - Crie um arquivo `SPEC.md` dentro do pacote da funcionalidade detalhando os Critérios de Aceite (formato Gherkin/BDD) baseados no `product.md`.
+   - Crie um arquivo `SPEC.md` dentro do pacote da funcionalidade detalhando os Critérios de Aceite (formato Gherkin/BDD) baseados no `product.md`. Conforme `docs/spec-driven.md`, gere sempre um **Diagrama de Sequência (Mermaid)** na seção final.
 
 3. **Test-Driven Development (TDD)**:
    - Escreva os testes unitários e de integração ANTES do código de produção.
@@ -42,4 +43,5 @@ Quando o usuário invocar esta skill, este fluxo deve ser seguido para implement
      - Suba as alterações para a branch da feature (ex: `feat/us-001-core-api`).
      - Monitore a esteira/workflow no GitHub (ex: Snapshot, Sonar).
      - Se o workflow passar, abra o Pull Request (PR) com título claro e resumo legível das alterações.
+     - Siga `docs/spec-driven.md`: Mova a Issue para "In Review" no painel, marque os checkboxes dos critérios implementados e adicione comentários sobre o que faltou.
      - Finalize a tarefa parando o container (`podman rm -f`) e excluindo a imagem criada (`podman rmi`), mas mantenha a pasta e coleção do Bruno no repositório.
