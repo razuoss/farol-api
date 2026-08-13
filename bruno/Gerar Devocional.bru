@@ -1,0 +1,29 @@
+meta {
+  name: Gerar Devocional
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/v1/devocional
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "solicitacao": "mensagem de esperança e coragem"
+  }
+}
+
+tests {
+  test("status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("has expected fields", function() {
+    var jsonData = res.getBody();
+    expect(jsonData.titulo).to.be.a('string');
+    expect(jsonData.textoChave).to.be.a('string');
+    expect(jsonData.titulo).to.include("Mock");
+  });
+}
