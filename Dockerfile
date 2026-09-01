@@ -1,6 +1,6 @@
 # Estágio 1: Build da Aplicação com Maven
 # Usamos uma imagem oficial do Maven com JDK 21 para compilar nosso projeto.
-FROM maven:3.9-eclipse-temurin-21 AS builder
+FROM maven:3-eclipse-temurin-26 AS builder
 
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
@@ -21,7 +21,7 @@ RUN mvn clean install -DskipTests
 
 # Estágio 2: Imagem Final de Execução
 # Usamos uma imagem JRE (Java Runtime Environment) mínima, para uma imagem final leve e segura.
-FROM eclipse-temurin:21-jre-jammy
+FROM eclipse-temurin:25-jre-jammy
 
 # Define o diretório de trabalho
 WORKDIR /app
